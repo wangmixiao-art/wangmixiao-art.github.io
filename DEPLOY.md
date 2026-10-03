@@ -2,6 +2,8 @@
 
 正式域名保持 `https://wangmixiaopiano.cn/`。项目是无第三方 npm 依赖的静态 HTML/CSS/JS；Node.js 22 只在构建或本地预览时运行，GitHub Pages 发布的是 `dist/`。没有数据库、服务端 API、PHP 或 SSR。
 
+仓库：[wangmixiao-art/wangmixiao-art.github.io](https://github.com/wangmixiao-art/wangmixiao-art.github.io)，发布分支为 `main`，默认预览地址为 `https://wangmixiao-art.github.io/`。默认地址会在绑定自定义域名后跳转到正式域名。迁移中的 DNS 切换和自定义域名 HTTPS 必须实际验证后才能认定完成；旧阿里云网站保持运行。
+
 ## 日常修改
 
 - 编辑 `dist/index.html` 中的中文内容和结构，`dist/app.js` 中的中／英／法译文，以及 `dist/styles.css`。
@@ -19,7 +21,7 @@
 1. 在 GitHub 仓库 Settings → Pages 中将 Source 设置为 **GitHub Actions**。
 2. 在默认 github.io 地址完成页面、资源与三语验证，期间保留旧服务器和原 DNS。
 3. 在 Pages → Custom domain 中保存 `wangmixiaopiano.cn`。使用 Actions 时，`dist/CNAME` 仅记录期望域名，不能代替 GitHub 的 Pages 设置。
-4. 用户手动更改 DNS：根域 `@` 设置四条 A 记录，分别为 `185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`；`www` 设置 CNAME 到实际 GitHub 账户的 `<username>.github.io`，不能带仓库路径。
+4. 用户手动更改 DNS：根域 `@` 设置四条 A 记录，分别为 `185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`；`www` 设置 CNAME 到 `wangmixiao-art.github.io`，不能带协议或仓库路径。
 5. 同一主机记录的旧 A/AAAA/CNAME 不应与这些记录冲突。只替换网站的 `@` 和 `www`，保留邮件 MX、域名验证 TXT 及其他无关记录。TTL 可设为 600 秒。
 6. 等待 GitHub DNS 校验及证书签发，启用 **Enforce HTTPS**，复测根域、www、跳转、三语、CSS/JS、图片、sitemap、robots 和 canonical。验证成功前不要关闭旧服务器。
 
@@ -29,6 +31,6 @@
 
 GitHub Pages 的响应头由平台控制，`server.mjs` 和 `dist/_headers` 中的缓存设置不会生效，HTML meta 也不能代替 HTTP 响应头。本项目使用内容哈希 CSS、JS、图片与构建版本，保留 `version.json` 更新探测和自动版本参数刷新，并避免边缘缓存更新时的重复刷新循环。不能承诺即时清除已打开微信页面的缓存，应在真实设备验证。
 
-三语页面是目录中的真实 `index.html`，没有 SPA 路由，不需要服务器回退规则。资源使用 `/` 开头的同域路径；建议使用 GitHub 用户站点仓库 `<username>.github.io`，保证未绑定自定义域名前的预览也位于域名根路径。canonical、hreflang、social image 和 sitemap 始终指向 `wangmixiaopiano.cn`。
+三语页面是目录中的真实 `index.html`，没有 SPA 路由，不需要服务器回退规则。资源使用 `/` 开头的同域路径；当前使用 GitHub 用户站点仓库 `wangmixiao-art.github.io`，保证未绑定自定义域名前的预览也位于域名根路径。canonical、hreflang、social image 和 sitemap 始终指向 `wangmixiaopiano.cn`。
 
 公共 GitHub Pages 的代码与网站图片会公开。提交前检查 Git 暂存区，不上传 `.env`、Token、私钥、SSH 配置、部署凭据、`.openai/hosting.json` 或当前聊天工作区的历史日志。GitHub CLI 凭据由系统密钥链或 CLI 自身安全存储管理，不能放进项目。
