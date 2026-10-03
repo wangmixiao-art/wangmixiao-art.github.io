@@ -2,7 +2,9 @@
 
 正式域名保持 `https://wangmixiaopiano.cn/`。项目是无第三方 npm 依赖的静态 HTML/CSS/JS；Node.js 22 只在构建或本地预览时运行，GitHub Pages 发布的是 `dist/`。没有数据库、服务端 API、PHP 或 SSR。
 
-仓库：[wangmixiao-art/wangmixiao-art.github.io](https://github.com/wangmixiao-art/wangmixiao-art.github.io)，发布分支为 `main`，默认预览地址为 `https://wangmixiao-art.github.io/`。默认地址会在绑定自定义域名后跳转到正式域名。迁移中的 DNS 切换和自定义域名 HTTPS 必须实际验证后才能认定完成；旧阿里云网站保持运行。
+仓库：[wangmixiao-art/wangmixiao-art.github.io](https://github.com/wangmixiao-art/wangmixiao-art.github.io)，发布分支为 `main`，默认地址 `https://wangmixiao-art.github.io/` 已跳转到正式域名。2026-10-03 完成 DNS 切换和自定义域名 HTTPS 验证；旧阿里云网站保持运行，未删除或改动。
+
+已验证：正式域名由 GitHub Pages 返回最新版 `3908661b6936`；根域四条 A 记录采用轮询，`www` CNAME 为 `wangmixiao-art.github.io`，TTL 600 秒；GitHub 已签发覆盖根域与 www 的证书并启用 Enforce HTTPS。HTTP、www 和默认域名均 301 跳转到 HTTPS 根域。三语页面、CSS、JS、图片及 SEO 文件与本地构建逐字节一致；Chrome 和 Safari 封面与三语切换正常。微信 User-Agent 的响应一致，但尚未测试真实手机微信的历史缓存。
 
 ## 日常修改
 
